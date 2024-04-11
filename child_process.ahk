@@ -123,7 +123,7 @@ class child_process {
 			out := k = 'stdout' ? this.output : this.error
 			if DllCall('PeekNamedPipe', 'ptr', f, 'ptr', 0, 'int', 0, 'ptr', 0, 'ptr', 0, 'ptr', 0) && ++peek {
 				while f {
-					if t := f.Read() {
+					if (t := f.Read()) !== '' {
 						arr := StrSplit(t, '`n', '`r'), l := arr.Length
 						crlf := l > 1 && InStr(t, '`r`n') ? '`r`n' : '`n'
 						for line in arr {
